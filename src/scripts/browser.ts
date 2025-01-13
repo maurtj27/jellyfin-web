@@ -1,35 +1,31 @@
-function isTv() {
+import { Browser } from '../types/browser';
+
+export const isTv = () => {
     // This is going to be really difficult to get right
     const userAgent = navigator.userAgent.toLowerCase();
+    const tvIndicators = {
+        // The OculusBrowsers userAgent also has the samsungbrowser defined but is not a tv.
+        oculusbrowser: false,
+        tv: true,
+        samsungbrowser: true,
+        viera: true
+    };
 
-    // The OculusBrowsers userAgent also has the samsungbrowser defined but is not a tv.
-    if (userAgent.indexOf('oculusbrowser') !== -1) {
-        return false;
-    }
-
-    if (userAgent.indexOf('tv') !== -1) {
-        return true;
-    }
-
-    if (userAgent.indexOf('samsungbrowser') !== -1) {
-        return true;
-    }
-
-    if (userAgent.indexOf('viera') !== -1) {
-        return true;
+    for (const indicator in tvIndicators) {
+        if (userAgent.includes(indicator)) {
+            return tvIndicators[indicator as keyof typeof tvIndicators];
+        }
     }
 
     return isWeb0s();
-}
+};
 
-function isWeb0s() {
+export const isWeb0s = () => {
     const userAgent = navigator.userAgent.toLowerCase();
+    return userAgent.includes('netcast') || userAgent.includes('web0s');
+};
 
-    return userAgent.indexOf('netcast') !== -1
-        || userAgent.indexOf('web0s') !== -1;
-}
-
-function isMobile(userAgent) {
+export const isMobile = (userAgent: string) => {
     const terms = [
         'mobi',
         'ipad',
@@ -44,16 +40,10 @@ function isMobile(userAgent) {
 
     const lower = userAgent.toLowerCase();
 
-    for (let i = 0, length = terms.length; i < length; i++) {
-        if (lower.indexOf(terms[i]) !== -1) {
-            return true;
-        }
-    }
+    return terms.some(term => lower.includes(term));
+};
 
-    return false;
-}
-
-function hasKeyboard(browser) {
+function hasKeyboard(browser: Browser) {
     if (browser.touch) {
         return true;
     }
@@ -76,30 +66,25 @@ function hasKeyboard(browser) {
     return !!browser.tv;
 }
 
-function iOSversion() {
+const iOSversion = () => {
     // MacIntel: Apple iPad Pro 11 iOS 13.1
-    if (/iP(hone|od|ad)|MacIntel/.test(navigator.platform)) {
-        const tests = [
-            // Original test for getting full iOS version number in iOS 2.0+
-            /OS (\d+)_(\d+)_?(\d+)?/,
-            // Test for iPads running iOS 13+ that can only get the major OS version
-            /Version\/(\d+)/
-        ];
-        for (const test of tests) {
-            const matches = (navigator.appVersion).match(test);
-            if (matches) {
-                return [
-                    parseInt(matches[1], 10),
-                    parseInt(matches[2] || 0, 10),
-                    parseInt(matches[3] || 0, 10)
-                ];
-            }
+    if (/iP(hone|od|ad)|MacIntel/.test(navigator.userAgent)) {
+        /* The first test gets the full iOS version number in iOS 2.0+,
+         *  the second test is for iPads running iOS 13+ which only get the major OS version
+         */
+        const match = userAgent.match(/OS (\d+)_(\d+)_?(\d+)?|Version\/(\d+)/);
+        if (match) {
+            return [
+                Number(match[1] || match[4]),
+                Number(match[2] || 0),
+                Number(match[3] || 0)
+            ];
         }
     }
     return [];
-}
+};
 
-function web0sVersion(browser) {
+function web0sVersion(browser: Browser) {
     // Detect webOS version by web engine version
 
     if (browser.chrome) {
@@ -244,7 +229,7 @@ const uaMatch = function (ua) {
 const userAgent = navigator.userAgent;
 
 const matched = uaMatch(userAgent);
-const browser = {};
+const browser: Browser = {};
 
 if (matched.browser) {
     browser[matched.browser] = true;
