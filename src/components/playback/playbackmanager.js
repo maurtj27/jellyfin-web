@@ -27,7 +27,7 @@ import { MediaError } from 'types/mediaError';
 import { getMediaError } from 'utils/mediaError';
 import { toApi } from 'utils/jellyfin-apiclient/compat';
 import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-item-kind.js';
-import browser from 'scripts/browser.js';
+import browser from 'scripts/browser';
 import { bindSkipSegment } from './skipsegment.ts';
 
 const UNLIMITED_ITEMS = -1;
