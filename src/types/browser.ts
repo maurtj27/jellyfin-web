@@ -1,0 +1,37 @@
+export type Browser = Partial<{
+    chrome: boolean
+    edge: boolean
+    edgeChromium: boolean
+    edgeUwp: boolean
+    firefox: boolean
+    ipad: boolean
+    iphone: boolean
+    ipod: boolean
+    opera: boolean
+    safari: boolean
+    version: string
+    versionMajor: number
+    osx: boolean
+    tizen: boolean
+    vidaa: boolean
+    web0s: boolean
+    ps4: boolean
+    xboxOne: boolean
+    tv: boolean
+    operaTv: boolean
+    mobile: boolean
+    slow: boolean
+    touch: boolean
+    keyboard: boolean
+    supportsCssAnimation: boolean
+    iOS: boolean
+    iOSVersion: number
+    web0sVersion: number
+    tizenVersion: number
+    orsay: boolean
+    hisense: boolean
+    animate: boolean
+    edg: boolean
+    edga: boolean
+    edgios: boolean
+}>;
