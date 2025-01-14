@@ -84,54 +84,38 @@ const iOSversion = () => {
     return [];
 };
 
-function web0sVersion(browser: Browser) {
+export const web0sVersion = (browser: Browser) => {
     // Detect webOS version by web engine version
 
-    if (browser.chrome) {
-        const userAgent = navigator.userAgent.toLowerCase();
-
-        if (userAgent.indexOf('netcast') !== -1) {
-            // The built-in browser (NetCast) may have a version that doesn't correspond to the actual web engine
-            // Since there is no reliable way to detect webOS version, we return an undefined version
-
-            console.warn('Unable to detect webOS version - NetCast');
-
-            return undefined;
-        }
-
-        // The next is only valid for the app
-
-        if (browser.versionMajor >= 94) {
-            return 23;
-        } else if (browser.versionMajor >= 87) {
-            return 22;
-        } else if (browser.versionMajor >= 79) {
-            return 6;
-        } else if (browser.versionMajor >= 68) {
-            return 5;
-        } else if (browser.versionMajor >= 53) {
-            return 4;
-        } else if (browser.versionMajor >= 38) {
-            return 3;
-        } else if (browser.versionMajor >= 34) {
-            // webOS 2 browser
-            return 2;
-        } else if (browser.versionMajor >= 26) {
-            // webOS 1 browser
-            return 1;
-        }
-    } else if (browser.versionMajor >= 538) {
-        // webOS 2 app
-        return 2;
-    } else if (browser.versionMajor >= 537) {
-        // webOS 1 app
-        return 1;
+    if (!browser.chrome && browser.versionMajor) {
+        if (browser.versionMajor >= 538) return 2; // webOS 2 app
+        if (browser.versionMajor >= 537) return 1; // webOS 1 app
+        console.error('Unable to detect webOS version');
+        return undefined;
     }
 
-    console.error('Unable to detect webOS version');
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.includes('netcast')) {
+        // The built-in browser (NetCast) may have a version that doesn't correspond to the actual web engine
+        // Since there is no reliable way to detect webOS version, we return an undefined version
+        console.warn('Unable to detect webOS version - NetCast');
+        return undefined;
+    }
 
-    return undefined;
-}
+    // The versionMap is only valid for the app
+    const versionMap: { [key: number]: number } = {
+        94: 23,
+        87: 22,
+        79: 6,
+        68: 5,
+        53: 4,
+        38: 3,
+        34: 2, // webOS 2 browser
+        26: 1 // webOS 1 browser
+    };
+
+    return versionMap[browser.versionMajor as keyof typeof versionMap] || undefined;
+};
 
 let _supportsCssAnimation;
 let _supportsCssAnimationWithPrefix;
