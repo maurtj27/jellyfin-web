@@ -8,6 +8,9 @@ export type Browser = Partial<{
     iphone: boolean
     ipod: boolean
     opera: boolean
+    mozilla: boolean
+    windows: boolean
+    android: boolean
     safari: boolean
     version: string
     versionMajor: number
@@ -25,7 +28,7 @@ export type Browser = Partial<{
     keyboard: boolean
     supportsCssAnimation: boolean
     iOS: boolean
-    iOSVersion: number
+    iOSVersion: number | number[]
     web0sVersion: number
     tizenVersion: number
     orsay: boolean

@@ -70,8 +70,8 @@ const iOSversion = () => {
     // MacIntel: Apple iPad Pro 11 iOS 13.1
     if (/iP(hone|od|ad)|MacIntel/.test(navigator.userAgent)) {
         /* The first test gets the full iOS version number in iOS 2.0+,
-		 *  the second test is for iPads running iOS 13+ which only get the major OS version
-		 */
+	  *  the second test is for iPads running iOS 13+ which only get the major OS version
+	  */
         const match = userAgent.match(/OS (\d+)_(\d+)_?(\d+)?|Version\/(\d+)/);
         if (match) {
             return [
@@ -154,6 +154,8 @@ const supportsCssAnimation = (() => {
     };
 })();
 
+type Match = 'edg' | 'edga' | 'edgios' | 'edge' | 'opera' | 'opr' | 'chrome' | 'safari' | 'firefox' | 'mozilla';
+type PlatformMatch = 'ipad' | 'iphone' | 'windows' | 'android';
 const uaMatch = (ua: string) => {
     ua = ua.toLowerCase().replace(/(motorola edge)/, '').trim();
 
@@ -163,7 +165,7 @@ const uaMatch = (ua: string) => {
 
     const platformMatch = /(ipad|iphone|windows|android)/.exec(ua) || [];
 
-    let browser = match[1] || '';
+    let browser: Match = match[1] as Match || '';
 
     if (browser === 'edge') {
         platformMatch[0] = '';
@@ -184,12 +186,12 @@ const uaMatch = (ua: string) => {
     return {
         browser,
         version,
-        platform: platformMatch[0] || '',
+        platform: platformMatch[0] as PlatformMatch || '',
         versionMajor
     };
 };
 
-const userAgent = navigator.userAgent;
+const userAgent = navigator.userAgent.toLowerCase();
 
 const matched = uaMatch(userAgent);
 const browser: Browser = {};
@@ -205,81 +207,49 @@ if (matched.platform) {
 }
 
 browser.edgeChromium = browser.edg || browser.edga || browser.edgios;
-
-if (!browser.chrome && !browser.edgeChromium && !browser.edge && !browser.opera && userAgent.toLowerCase().indexOf('webkit') !== -1) {
-    browser.safari = true;
-}
-
-browser.osx = userAgent.toLowerCase().indexOf('mac os x') !== -1;
-
+browser.safari = !browser.chrome && !browser.edgeChromium && !browser.edge && !browser.opera && userAgent.indexOf('webkit') !== -1;
+browser.osx = userAgent.indexOf('mac os x') !== -1;
 // This is a workaround to detect iPads on iOS 13+ that report as desktop Safari
 // This may break in the future if Apple releases a touchscreen Mac
 // https://forums.developer.apple.com/thread/119186
-if (browser.osx && !browser.iphone && !browser.ipod && !browser.ipad && navigator.maxTouchPoints > 1) {
-    browser.ipad = true;
-}
-
-if (userAgent.toLowerCase().indexOf('playstation 4') !== -1) {
-    browser.ps4 = true;
-    browser.tv = true;
-}
-
-if (isMobile(userAgent)) {
-    browser.mobile = true;
-}
-
-if (userAgent.toLowerCase().indexOf('xbox') !== -1) {
-    browser.xboxOne = true;
-    browser.tv = true;
-}
+// eslint-disable-next-line compat/compat
+browser.ipad = browser.osx && !browser.iphone && !browser.ipod && navigator.maxTouchPoints > 1;
+browser.ps4 = userAgent.indexOf('playstation 4') !== -1;
+browser.tv = browser.ps4 || userAgent.indexOf('xbox') !== -1 || isTv();
+browser.xboxOne = userAgent.indexOf('xbox one') !== -1;
+browser.mobile = isMobile(userAgent);
 browser.animate = typeof document !== 'undefined' && document.documentElement.animate != null;
-browser.hisense = userAgent.toLowerCase().includes('hisense');
-browser.tizen = userAgent.toLowerCase().indexOf('tizen') !== -1 || window.tizen != null;
-browser.vidaa = userAgent.toLowerCase().includes('vidaa');
+browser.hisense = userAgent.includes('hisense');
+browser.tizen = userAgent.indexOf('tizen') !== -1 || ('tizen' in window && window.tizen != null);
+browser.vidaa = userAgent.includes('vidaa');
 browser.web0s = isWeb0s();
-browser.edgeUwp = browser.edge && (userAgent.toLowerCase().indexOf('msapphost') !== -1 || userAgent.toLowerCase().indexOf('webview') !== -1);
+browser.edgeUwp = browser.edge && (userAgent.indexOf('msapphost') !== -1 || userAgent.indexOf('webview') !== -1);
 
-if (browser.web0s) {
-    browser.web0sVersion = web0sVersion(browser);
-
+if (browser.web0s || browser.tizen) {
     // UserAgent string contains 'Chrome' and 'Safari', but we only want 'web0s' to be true
     delete browser.chrome;
     delete browser.safari;
-} else if (browser.tizen) {
-    const v = (navigator.appVersion).match(/Tizen (\d+).(\d+)/);
-    browser.tizenVersion = parseInt(v[1], 10);
-
-    // UserAgent string contains 'Chrome' and 'Safari', but we only want 'tizen' to be true
-    delete browser.chrome;
-    delete browser.safari;
+    if (browser.web0s) {
+        browser.web0sVersion = web0sVersion(browser);
+    } else {
+        const v = (navigator.appVersion).match(/Tizen (\d+).(\d+)/);
+        browser.tizenVersion = parseInt(v?.[1] ?? '', 10);
+    }
 } else {
-    browser.orsay = userAgent.toLowerCase().indexOf('smarthub') !== -1;
+    browser.orsay = userAgent.indexOf('smarthub') !== -1;
 }
 
-if (browser.edgeUwp) {
-    browser.edge = true;
-}
-
-browser.tv = isTv();
-browser.operaTv = browser.tv && userAgent.toLowerCase().indexOf('opr/') !== -1;
-
-if (browser.mobile || browser.tv) {
-    browser.slow = true;
-}
-
+browser.edge = browser.edgeUwp || browser.edge;
+browser.operaTv = browser.tv && userAgent.indexOf('opr/') !== -1;
+browser.slow = browser.mobile || browser.tv;
 /* eslint-disable-next-line compat/compat */
-if (typeof document !== 'undefined' && ('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) {
-    browser.touch = true;
-}
-
+browser.touch = typeof document !== 'undefined' && ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 browser.keyboard = hasKeyboard(browser);
-browser.supportsCssAnimation = supportsCssAnimation;
-
+browser.supportsCssAnimation = true;
 browser.iOS = browser.ipad || browser.iphone || browser.ipod;
 
 if (browser.iOS) {
     browser.iOSVersion = iOSversion();
-
     if (browser.iOSVersion && browser.iOSVersion.length >= 2) {
         browser.iOSVersion = browser.iOSVersion[0] + (browser.iOSVersion[1] / 10);
     }
