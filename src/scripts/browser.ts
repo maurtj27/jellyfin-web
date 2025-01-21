@@ -154,47 +154,26 @@ const supportsCssAnimation = (() => {
     };
 })();
 
-const uaMatch = function (ua) {
-    ua = ua.toLowerCase();
+const uaMatch = (ua: string) => {
+    ua = ua.toLowerCase().replace(/(motorola edge)/, '').trim();
 
-    ua = ua.replace(/(motorola edge)/, '').trim();
+    const match = /(edg|edga|edgios|edge|opera|opr|chrome|safari|firefox|mozilla(?:.*? rv:([\w.]+)|))/.exec(ua) || [];
 
-    const match = /(edg)[ /]([\w.]+)/.exec(ua)
-		|| /(edga)[ /]([\w.]+)/.exec(ua)
-		|| /(edgios)[ /]([\w.]+)/.exec(ua)
-		|| /(edge)[ /]([\w.]+)/.exec(ua)
-		|| /(opera)[ /]([\w.]+)/.exec(ua)
-		|| /(opr)[ /]([\w.]+)/.exec(ua)
-		|| /(chrome)[ /]([\w.]+)/.exec(ua)
-		|| /(safari)[ /]([\w.]+)/.exec(ua)
-		|| /(firefox)[ /]([\w.]+)/.exec(ua)
-		|| ua.indexOf('compatible') < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua)
-		|| [];
+    const versionMatch = /(version)[ /]([\w.]+)/.exec(ua) || [];
 
-    const versionMatch = /(version)[ /]([\w.]+)/.exec(ua);
-
-    let platformMatch = /(ipad)/.exec(ua)
-		|| /(iphone)/.exec(ua)
-		|| /(windows)/.exec(ua)
-		|| /(android)/.exec(ua)
-		|| [];
+    const platformMatch = /(ipad|iphone|windows|android)/.exec(ua) || [];
 
     let browser = match[1] || '';
 
     if (browser === 'edge') {
-        platformMatch = [''];
+        platformMatch[0] = '';
     }
 
     if (browser === 'opr') {
         browser = 'opera';
     }
 
-    let version;
-    if (versionMatch && versionMatch.length > 2) {
-        version = versionMatch[2];
-    }
-
-    version = version || match[2] || '0';
+    const version = versionMatch[2] || match[2] || '0';
 
     let versionMajor = parseInt(version.split('.')[0], 10);
 
@@ -203,10 +182,10 @@ const uaMatch = function (ua) {
     }
 
     return {
-        browser: browser,
-        version: version,
+        browser,
+        version,
         platform: platformMatch[0] || '',
-        versionMajor: versionMajor
+        versionMajor
     };
 };
 
