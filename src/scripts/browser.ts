@@ -70,8 +70,8 @@ const iOSversion = () => {
     // MacIntel: Apple iPad Pro 11 iOS 13.1
     if (/iP(hone|od|ad)|MacIntel/.test(navigator.userAgent)) {
         /* The first test gets the full iOS version number in iOS 2.0+,
-         *  the second test is for iPads running iOS 13+ which only get the major OS version
-         */
+		 *  the second test is for iPads running iOS 13+ which only get the major OS version
+		 */
         const match = userAgent.match(/OS (\d+)_(\d+)_?(\d+)?|Version\/(\d+)/);
         if (match) {
             return [
@@ -117,42 +117,42 @@ export const web0sVersion = (browser: Browser) => {
     return versionMap[browser.versionMajor as keyof typeof versionMap] || undefined;
 };
 
-let _supportsCssAnimation;
-let _supportsCssAnimationWithPrefix;
-function supportsCssAnimation(allowPrefix) {
-    // TODO: Assess if this is still needed, as all of our targets should natively support CSS animations.
-    if (allowPrefix && (_supportsCssAnimationWithPrefix === true || _supportsCssAnimationWithPrefix === false)) {
-        return _supportsCssAnimationWithPrefix;
-    }
-    if (_supportsCssAnimation === true || _supportsCssAnimation === false) {
-        return _supportsCssAnimation;
-    }
+// TODO: Assess if this is still needed, as all of our targets should natively support CSS animations.
+const supportsCssAnimation = (() => {
+    let _supportsCssAnimation: boolean | null = null;
+    let _supportsCssAnimationWithPrefix: boolean | null = null;
 
-    let animation = false;
-    const domPrefixes = ['Webkit', 'O', 'Moz'];
-    const elm = document.createElement('div');
+    return (allowPrefix: boolean): boolean => {
+        if (allowPrefix) {
+            if (_supportsCssAnimationWithPrefix !== null) {
+                return _supportsCssAnimationWithPrefix;
+            }
+        } else if (_supportsCssAnimation !== null) {
+            return _supportsCssAnimation;
+        }
 
-    if (elm.style.animationName !== undefined) {
-        animation = true;
-    }
+        const elm = document.createElement('div');
+        let animation = elm.style.animationName !== undefined;
 
-    if (animation === false && allowPrefix) {
-        for (const domPrefix of domPrefixes) {
-            if (elm.style[domPrefix + 'AnimationName'] !== undefined) {
-                animation = true;
-                break;
+        if (!animation && allowPrefix) {
+            const domPrefixes = ['Webkit', 'O', 'Moz'];
+            for (const domPrefix of domPrefixes) {
+                if (elm.style[domPrefix + 'AnimationName' as keyof typeof elm.style] !== undefined) {
+                    animation = true;
+                    break;
+                }
             }
         }
-    }
 
-    if (allowPrefix) {
-        _supportsCssAnimationWithPrefix = animation;
-        return _supportsCssAnimationWithPrefix;
-    } else {
-        _supportsCssAnimation = animation;
-        return _supportsCssAnimation;
-    }
-}
+        if (allowPrefix) {
+            _supportsCssAnimationWithPrefix = animation;
+        } else {
+            _supportsCssAnimation = animation;
+        }
+
+        return animation;
+    };
+})();
 
 const uaMatch = function (ua) {
     ua = ua.toLowerCase();
@@ -160,24 +160,24 @@ const uaMatch = function (ua) {
     ua = ua.replace(/(motorola edge)/, '').trim();
 
     const match = /(edg)[ /]([\w.]+)/.exec(ua)
-        || /(edga)[ /]([\w.]+)/.exec(ua)
-        || /(edgios)[ /]([\w.]+)/.exec(ua)
-        || /(edge)[ /]([\w.]+)/.exec(ua)
-        || /(opera)[ /]([\w.]+)/.exec(ua)
-        || /(opr)[ /]([\w.]+)/.exec(ua)
-        || /(chrome)[ /]([\w.]+)/.exec(ua)
-        || /(safari)[ /]([\w.]+)/.exec(ua)
-        || /(firefox)[ /]([\w.]+)/.exec(ua)
-        || ua.indexOf('compatible') < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua)
-        || [];
+		|| /(edga)[ /]([\w.]+)/.exec(ua)
+		|| /(edgios)[ /]([\w.]+)/.exec(ua)
+		|| /(edge)[ /]([\w.]+)/.exec(ua)
+		|| /(opera)[ /]([\w.]+)/.exec(ua)
+		|| /(opr)[ /]([\w.]+)/.exec(ua)
+		|| /(chrome)[ /]([\w.]+)/.exec(ua)
+		|| /(safari)[ /]([\w.]+)/.exec(ua)
+		|| /(firefox)[ /]([\w.]+)/.exec(ua)
+		|| ua.indexOf('compatible') < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua)
+		|| [];
 
     const versionMatch = /(version)[ /]([\w.]+)/.exec(ua);
 
     let platformMatch = /(ipad)/.exec(ua)
-        || /(iphone)/.exec(ua)
-        || /(windows)/.exec(ua)
-        || /(android)/.exec(ua)
-        || [];
+		|| /(iphone)/.exec(ua)
+		|| /(windows)/.exec(ua)
+		|| /(android)/.exec(ua)
+		|| [];
 
     let browser = match[1] || '';
 
