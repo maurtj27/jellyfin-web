@@ -8,7 +8,7 @@ import globalize from '../../lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import scrollHelper from '../../scripts/scrollHelper';
 import imageLoader from '../images/imageLoader';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import { appHost } from '../apphost';
 import '../cardbuilder/card.scss';
 import '../formdialog.scss';

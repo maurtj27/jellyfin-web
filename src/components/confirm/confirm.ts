@@ -1,7 +1,7 @@
 import dialog from 'components/dialog/dialog';
 import { appRouter } from 'components/router/appRouter';
 import globalize from 'lib/globalize';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 
 interface OptionItem {
     id: string,

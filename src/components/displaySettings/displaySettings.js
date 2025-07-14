@@ -1,7 +1,7 @@
 import escapeHtml from 'escape-html';
 
 import { AppFeature } from 'constants/appFeature';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import layoutManager from '../layoutManager';
 import { pluginManager } from '../pluginManager';
 import { appHost } from '../apphost';

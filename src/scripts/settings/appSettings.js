@@ -1,4 +1,4 @@
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import Events from '../../utils/events.ts';
 import { toBoolean } from '../../utils/string.ts';
 

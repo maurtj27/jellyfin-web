@@ -5,7 +5,7 @@ import taskButton from 'scripts/taskbutton';
 import dom from 'scripts/dom';
 import layoutManager from 'components/layoutManager';
 import loading from 'components/loading/loading';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import 'components/listview/listview.scss';
 import 'styles/flexstyles.scss';
 import 'elements/emby-itemscontainer/emby-itemscontainer';

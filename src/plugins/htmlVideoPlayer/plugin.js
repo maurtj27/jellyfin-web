@@ -6,7 +6,7 @@ import { AppFeature } from 'constants/appFeature';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import { MediaError } from 'types/mediaError';
 
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import appSettings from '../../scripts/settings/appSettings';
 import { appHost } from '../../components/apphost';
 import loading from '../../components/loading/loading';

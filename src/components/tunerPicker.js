@@ -3,7 +3,7 @@ import dom from '../scripts/dom';
 import layoutManager from './layoutManager';
 import globalize from '../lib/globalize';
 import loading from './loading/loading';
-import browser from '../scripts/browser';
+import browser from '../utils/browser';
 import focusManager from './focusManager';
 import scrollHelper from '../scripts/scrollHelper';
 import 'material-design-icons-iconfont';

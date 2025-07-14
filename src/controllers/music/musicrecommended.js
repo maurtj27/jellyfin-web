@@ -3,7 +3,7 @@ import imageLoader from 'components/images/imageLoader';
 import layoutManager from 'components/layoutManager';
 import loading from 'components/loading/loading';
 import * as mainTabsManager from 'components/maintabsmanager';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import dom from 'scripts/dom';
 import globalize from 'lib/globalize';
 import inputManager from 'scripts/inputManager';

@@ -1,4 +1,4 @@
-import browser from '../scripts/browser';
+import browser from '../utils/browser';
 import { copy } from '../scripts/clipboard';
 import dom from '../scripts/dom';
 import globalize from '../lib/globalize';

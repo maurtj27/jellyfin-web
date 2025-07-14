@@ -3,7 +3,7 @@ import AlphaPicker from 'components/alphaPicker/AlphaPickerComponent';
 import Input from 'elements/emby-input/Input';
 import globalize from 'lib/globalize';
 import layoutManager from 'components/layoutManager';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import 'material-design-icons-iconfont';
 import 'styles/flexstyles.scss';
 import './searchfields.scss';

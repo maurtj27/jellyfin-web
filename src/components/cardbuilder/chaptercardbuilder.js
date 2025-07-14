@@ -10,7 +10,7 @@ import { ServerConnections } from 'lib/jellyfin-apiclient';
 import datetime from '../../scripts/datetime';
 import imageLoader from '../images/imageLoader';
 import layoutManager from '../layoutManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 
 const enableFocusTransform = !browser.slow && !browser.edge;
 

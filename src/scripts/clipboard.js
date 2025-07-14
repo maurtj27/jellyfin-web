@@ -1,4 +1,4 @@
-import browser from './browser';
+import browser from '../utils/browser';
 
 /**
  * Copies text to the clipboard using the textarea.

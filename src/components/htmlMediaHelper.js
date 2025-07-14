@@ -1,5 +1,5 @@
 import appSettings from '../scripts/settings/appSettings' ;
-import browser from '../scripts/browser';
+import browser from '../utils/browser';
 import Events from '../utils/events.ts';
 import { MediaError } from 'types/mediaError';
 

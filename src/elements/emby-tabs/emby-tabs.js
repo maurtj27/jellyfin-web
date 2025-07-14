@@ -1,7 +1,7 @@
 import 'webcomponents.js/webcomponents-lite';
 import dom from '../../scripts/dom';
 import ScrollerFactory from 'lib/scroller';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import focusManager from '../../components/focusManager';
 import layoutManager from '../../components/layoutManager';
 import './emby-tabs.scss';

@@ -1,6 +1,6 @@
 import isEqual from 'lodash-es/isEqual';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import { playbackManager } from '../playback/playbackmanager';
 import dom from '../../scripts/dom';
 import * as userSettings from '../../scripts/settings/userSettings';

@@ -1,6 +1,6 @@
 import escapeHtml from 'escape-html';
 import inputManager from '../../scripts/inputManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import globalize from '../../lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
 import Events from '../../utils/events.ts';

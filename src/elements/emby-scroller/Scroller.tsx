@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import useElementSize from 'hooks/useElementSize';
 import layoutManager from '../../components/layoutManager';
 import dom from '../../scripts/dom';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import focusManager from '../../components/focusManager';
 import ScrollerFactory from 'lib/scroller';
 import ScrollButtons from '../emby-scrollbuttons/ScrollButtons';

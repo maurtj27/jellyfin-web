@@ -1,5 +1,5 @@
 import { AppFeature } from 'constants/appFeature';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import { appHost } from '../apphost';
 import loading from '../loading/loading';
 import globalize from '../../lib/globalize';

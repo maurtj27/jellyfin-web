@@ -1,6 +1,6 @@
 import inputManager from './inputManager';
 import focusManager from '../components/focusManager';
-import browser from './browser';
+import browser from '../utils/browser';
 import layoutManager from '../components/layoutManager';
 import dom from './dom';
 import Events from '../utils/events.ts';

@@ -8,7 +8,7 @@ import { ServerConnections } from 'lib/jellyfin-apiclient';
 import inputManager from '../../scripts/inputManager';
 import layoutManager from '../layoutManager';
 import focusManager from '../focusManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import { appHost } from '../apphost';
 import dom from '../../scripts/dom';
 

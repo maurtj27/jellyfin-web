@@ -1,4 +1,4 @@
-import browser from './browser';
+import browser from '../utils/browser';
 import appSettings from './settings/appSettings';
 import * as userSettings from './settings/userSettings';
 

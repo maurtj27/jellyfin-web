@@ -3,7 +3,7 @@ import dom from '../../scripts/dom';
 import layoutManager from '../../components/layoutManager';
 import inputManager from '../../scripts/inputManager';
 import focusManager from '../../components/focusManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import 'webcomponents.js/webcomponents-lite';
 import './emby-scroller.scss';
 

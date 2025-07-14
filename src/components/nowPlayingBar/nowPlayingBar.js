@@ -6,7 +6,7 @@ import { ServerConnections } from 'lib/jellyfin-apiclient';
 
 import datetime from '../../scripts/datetime';
 import Events from '../../utils/events.ts';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import imageLoader from '../images/imageLoader';
 import layoutManager from '../layoutManager';
 import { playbackManager } from '../playback/playbackmanager';

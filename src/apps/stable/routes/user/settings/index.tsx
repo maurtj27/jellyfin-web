@@ -12,7 +12,7 @@ import { useApi } from 'hooks/useApi';
 import { useQuickConnectEnabled } from 'hooks/useQuickConnect';
 import { useUsers } from 'hooks/useUsers';
 import globalize from 'lib/globalize';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import Dashboard from 'utils/dashboard';
 import shell from 'scripts/shell';
 

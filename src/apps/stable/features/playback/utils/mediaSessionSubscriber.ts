@@ -5,7 +5,7 @@ import { getItemTextLines } from 'apps/stable/features/playback/utils/itemText';
 import { PlaybackSubscriber } from 'apps/stable/features/playback/utils/playbackSubscriber';
 import type { PlaybackManager } from 'components/playback/playbackmanager';
 import { MILLISECONDS_PER_SECOND, TICKS_PER_MILLISECOND } from 'constants/time';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import shell from 'scripts/shell';
 import type { ItemDto } from 'types/base/models/item-dto';
 import type { PlayerState } from 'types/playbackStopInfo';

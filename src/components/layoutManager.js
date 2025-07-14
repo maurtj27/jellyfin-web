@@ -1,6 +1,6 @@
 
 import { appHost } from './apphost';
-import browser from '../scripts/browser';
+import browser from '../utils/browser';
 import appSettings from '../scripts/settings/appSettings';
 import Events from '../utils/events.ts';
 

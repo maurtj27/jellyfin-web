@@ -10,7 +10,7 @@ import dom from '../../../scripts/dom';
 import loading from '../../../components/loading/loading';
 import layoutManager from '../../../components/layoutManager';
 import libraryMenu from '../../../scripts/libraryMenu';
-import browser from '../../../scripts/browser';
+import browser from '../../../utils/browser';
 import globalize from '../../../lib/globalize';
 import '../../../components/cardbuilder/card.scss';
 import '../../../elements/emby-checkbox/emby-checkbox';

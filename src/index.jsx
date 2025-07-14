@@ -16,7 +16,7 @@ import { AppFeature } from 'constants/appFeature';
 import globalize from './lib/globalize';
 import { loadCoreDictionary } from 'lib/globalize/loader';
 import { initialize as initializeAutoCast } from 'scripts/autocast';
-import browser from './scripts/browser';
+import browser from './utils/browser';
 import keyboardNavigation from './scripts/keyboardNavigation';
 import { getPlugins } from './scripts/settings/webSettings';
 import taskButton from './scripts/taskbutton';

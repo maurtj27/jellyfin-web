@@ -6,7 +6,7 @@ import { TICKS_PER_MINUTE, TICKS_PER_SECOND } from 'constants/time';
 import { EventType } from 'types/eventType';
 
 import { playbackManager } from '../../../components/playback/playbackmanager';
-import browser from '../../../scripts/browser';
+import browser from '../../../utils/browser';
 import dom from '../../../scripts/dom';
 import inputManager from '../../../scripts/inputManager';
 import mouseManager from '../../../scripts/mouseManager';

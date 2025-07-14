@@ -1,5 +1,5 @@
 import focusManager from '../focusManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import layoutManager from '../layoutManager';
 import inputManager from '../../scripts/inputManager';
 import { toBoolean } from '../../utils/string.ts';

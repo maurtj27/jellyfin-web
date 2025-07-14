@@ -1,5 +1,5 @@
 import { appRouter } from './router/appRouter';
-import browser from '../scripts/browser';
+import browser from '../utils/browser';
 import dialog from './dialog/dialog';
 import globalize from '../lib/globalize';
 

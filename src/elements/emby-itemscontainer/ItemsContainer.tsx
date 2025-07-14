@@ -12,7 +12,7 @@ import Events, { type Event } from 'utils/events';
 import serverNotifications from 'scripts/serverNotifications';
 import inputManager from 'scripts/inputManager';
 import dom from 'scripts/dom';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import imageLoader from 'components/images/imageLoader';
 import layoutManager from 'components/layoutManager';
 import { playbackManager } from 'components/playback/playbackmanager';

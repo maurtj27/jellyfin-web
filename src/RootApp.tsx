@@ -5,7 +5,7 @@ import React from 'react';
 import { ApiProvider } from 'hooks/useApi';
 import { UserSettingsProvider } from 'hooks/useUserSettings';
 import { WebConfigProvider } from 'hooks/useWebConfig';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import { queryClient } from 'utils/query/queryClient';
 
 import RootAppRouter from 'RootAppRouter';

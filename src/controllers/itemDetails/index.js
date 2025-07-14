@@ -24,7 +24,7 @@ import itemShortcuts from 'components/shortcuts';
 import { AppFeature } from 'constants/appFeature';
 import globalize from 'lib/globalize';
 import { ServerConnections } from 'lib/jellyfin-apiclient';
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import datetime from 'scripts/datetime';
 import dom from 'scripts/dom';
 import { download } from 'scripts/fileDownloader';

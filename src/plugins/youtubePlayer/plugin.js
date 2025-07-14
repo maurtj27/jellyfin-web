@@ -1,4 +1,4 @@
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import { appRouter } from '../../components/router/appRouter';
 import loading from '../../components/loading/loading';
 import { setBackdropTransparency, TRANSPARENCY_LEVEL } from '../../components/backdrop/backdrop';

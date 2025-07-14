@@ -4,7 +4,7 @@ import loading from '../loading/loading';
 import { appHost } from '../apphost';
 import dialogHelper from '../dialogHelper/dialogHelper';
 import imageLoader from '../images/imageLoader';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import layoutManager from '../layoutManager';
 import scrollHelper from '../../scripts/scrollHelper';
 import globalize from '../../lib/globalize';

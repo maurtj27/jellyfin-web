@@ -1,4 +1,4 @@
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import dialogHelper from '../dialogHelper/dialogHelper';
 import layoutManager from '../layoutManager';
 import scrollHelper from '../../scripts/scrollHelper';

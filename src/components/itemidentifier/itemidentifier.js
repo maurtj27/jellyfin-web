@@ -12,7 +12,7 @@ import { ServerConnections } from 'lib/jellyfin-apiclient';
 import scrollHelper from '../../scripts/scrollHelper';
 import layoutManager from '../layoutManager';
 import focusManager from '../focusManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import '../../elements/emby-input/emby-input';
 import '../../elements/emby-checkbox/emby-checkbox';
 import '../../elements/emby-button/paper-icon-button-light';

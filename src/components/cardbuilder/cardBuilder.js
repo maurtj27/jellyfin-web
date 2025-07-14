@@ -8,7 +8,7 @@ import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-ite
 import { PersonKind } from '@jellyfin/sdk/lib/generated-client/models/person-kind';
 import escapeHtml from 'escape-html';
 
-import browser from 'scripts/browser';
+import browser from 'utils/browser';
 import datetime from 'scripts/datetime';
 import dom from 'scripts/dom';
 import globalize from 'lib/globalize';

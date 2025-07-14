@@ -21,7 +21,7 @@ import { appHost } from '../components/apphost';
 import { playbackManager } from '../components/playback/playbackmanager';
 import { pluginManager } from '../components/pluginManager';
 import groupSelectionMenu from '../plugins/syncPlay/ui/groupSelectionMenu';
-import browser from './browser';
+import browser from '../utils/browser';
 import imageHelper from '../utils/image';
 import { getMenuLinks } from '../scripts/settings/webSettings';
 import Dashboard, { pageClassOn } from '../utils/dashboard';

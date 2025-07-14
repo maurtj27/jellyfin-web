@@ -1,6 +1,6 @@
 import { AppFeature } from 'constants/appFeature';
 import Events from '../../utils/events.ts';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import loading from '../loading/loading';
 import { playbackManager } from '../playback/playbackmanager';
 import { pluginManager } from '../pluginManager';

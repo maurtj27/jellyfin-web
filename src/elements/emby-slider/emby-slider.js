@@ -1,6 +1,6 @@
 import isEqual from 'lodash-es/isEqual';
 
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import dom from '../../scripts/dom';
 import layoutManager from '../../components/layoutManager';
 import keyboardnavigation from '../../scripts/keyboardNavigation';

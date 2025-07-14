@@ -1,7 +1,7 @@
 import { AppFeature } from 'constants/appFeature';
 import { MediaError } from 'types/mediaError';
 
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import { appHost } from '../../components/apphost';
 import * as htmlMediaHelper from '../../components/htmlMediaHelper';
 import profileBuilder from '../../scripts/browserDeviceProfile';

@@ -1,6 +1,6 @@
 import { playbackManager } from './playbackmanager';
 import dom from '../../scripts/dom';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import Events from '../../utils/events.ts';
 
 import './iconosd.scss';

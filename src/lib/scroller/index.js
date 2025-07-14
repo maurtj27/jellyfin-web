@@ -3,7 +3,7 @@
  * It is a legacy library that should be replaced at some point.
  */
 
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import layoutManager from '../../components/layoutManager';
 import dom from '../../scripts/dom';
 import focusManager from '../../components/focusManager';

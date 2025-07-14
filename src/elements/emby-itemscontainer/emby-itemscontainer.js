@@ -6,7 +6,7 @@ import inputManager from '../../scripts/inputManager';
 import { playbackManager } from '../../components/playback/playbackmanager';
 import imageLoader from '../../components/images/imageLoader';
 import layoutManager from '../../components/layoutManager';
-import browser from '../../scripts/browser';
+import browser from '../../utils/browser';
 import dom from '../../scripts/dom';
 import loading from '../../components/loading/loading';
 import focusManager from '../../components/focusManager';

@@ -3,7 +3,7 @@
  * @module components/input/keyboardnavigation
  */
 
-import browser from './browser';
+import browser from '../utils/browser';
 import inputManager from './inputManager';
 import layoutManager from '../components/layoutManager';
 import appSettings from './settings/appSettings';
